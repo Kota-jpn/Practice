@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
+import 'package:flutter_application_practice/sample2.dart';
 
 class MySample1 extends StatelessWidget {
   @override
@@ -7,11 +9,21 @@ class MySample1 extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Color.fromARGB(255, 255, 253, 231),
-        title: Align(
+        title: const Align(
           alignment: Alignment.centerLeft,
           child: Text(
             'Todo List',
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1),
+          child: Divider(
+            color: Colors.black.withOpacity(0.1),
+            thickness: 1,
+            height: 1,
+            indent: 16,
+            endIndent: 16,
           ),
         ),
         actions: [
@@ -19,7 +31,7 @@ class MySample1 extends StatelessWidget {
             onPressed: () {
               // Add button action
             },
-            icon: Icon(Icons.add, color: Colors.black),
+            icon: Icon(PhosphorIcons.plus, color: Colors.black),
           ),
         ],
       ),
@@ -28,25 +40,33 @@ class MySample1 extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.all(24),
           children: [
-            Container(
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Hello World'),
-                  Container(
-                    padding: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                      color: Colors.yellow,
-                      borderRadius: BorderRadius.circular(4),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MySample2()),
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Hello World'),
+                    Container(
+                      padding: EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        color: Colors.yellow,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Text('2'),
                     ),
-                    child: Text('2'),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

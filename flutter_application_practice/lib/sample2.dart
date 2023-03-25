@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_practice/sample3.dart';
+import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 
 class MySample2 extends StatefulWidget {
   @override
@@ -17,19 +19,12 @@ class _MySample2State extends State<MySample2> {
   @override
   void initState() {
     super.initState();
-    taskCompletionStatus = List.filled(tasks.length, false);
+    taskCompletionStatus = List.generate(tasks.length, (index) => false);
   }
 
   void _toggleTaskCompletion(int index) {
     setState(() {
       taskCompletionStatus[index] = !taskCompletionStatus[index];
-    });
-  }
-
-  void _removeTask(int index) {
-    setState(() {
-      tasks.removeAt(index);
-      taskCompletionStatus.removeAt(index);
     });
   }
 
@@ -44,11 +39,19 @@ class _MySample2State extends State<MySample2> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Icon(Icons.delete),
+              Icon(PhosphorIcons.trash),
               SizedBox(
-                width: 24,
+                width: 8,
               ),
-              Icon(Icons.mode_edit),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MySample3()),
+                  );
+                },
+                icon: Icon(PhosphorIcons.pencil_simple_line),
+              ),
               SizedBox(width: 16),
             ],
           ),
@@ -76,9 +79,12 @@ class _MySample2State extends State<MySample2> {
                 ),
                 title: Center(child: Text(tasks[index])),
                 trailing: IconButton(
-                  icon: Icon(Icons.clear_outlined),
+                  icon: Icon(PhosphorIcons.x),
                   onPressed: () {
-                    _removeTask(index);
+                    setState(() {
+                      tasks.removeAt(index);
+                      taskCompletionStatus.removeAt(index);
+                    });
                   },
                 ),
               ),
@@ -87,9 +93,14 @@ class _MySample2State extends State<MySample2> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MySample3()),
+          );
+        },
         backgroundColor: Colors.deepOrange,
-        child: Icon(Icons.add),
+        child: Icon(PhosphorIcons.plus),
       ),
     );
   }

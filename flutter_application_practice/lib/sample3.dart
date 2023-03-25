@@ -15,9 +15,14 @@ class MySample3 extends StatelessWidget {
                     onPressed: () {
                       print('hi');
                     },
-                    child: Text(
-                      'Finish',
-                      style: TextStyle(color: Colors.red),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        'Finish',
+                        style: TextStyle(color: Colors.red),
+                      ),
                     ),
                   )))
         ],
